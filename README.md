@@ -26,7 +26,7 @@ right-randomized half-sites.
 2. **substrate file** - tab-delimited text file defining canonical substrate sequences and their formats. Each file listed in the index file must have an entry in the substrates file. Library files and their corresponding control files must have the same site layout. Substrate file contains the following columns:
    * `Library_file` - fastq file containing sequencing reads
    * `Substrate` – nucleotide sequence of the canonical substrate
-   * `Site_layout` - layout of the substrate in the format <left half-site length>;<core length>;<right half-site length>
+   * `Site_layout` - layout of the substrate in the format `left half-site length`;`core length`;`right half-site length`
 
 3. **fastq files** (listed in index/substrate files) containing sequencing reads.
 
