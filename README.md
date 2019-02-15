@@ -63,3 +63,9 @@ Analysis output, printed to stdout, is a tab-delimited text with the following c
 
 ### Requirements
 Python 3.2 or later
+
+pandas 0.16.1 or later
+
+### Example
+
+Example index and substrate files are included. The corresponding fastq files are available from https://www.ncbi.nlm.nih.gov/bioproject/517947

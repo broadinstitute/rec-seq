@@ -1,0 +1,7 @@
+Enzyme_variant	Date	Left_library_file	Right_library_file	Left_control_file	Right_control_file
+attP	9/26/2018	20190108-Bx-attP-L-1.fastq	20190108-Bx-attP-R-1.fastq	20190108-Bx-attP-L-pre.fastq	20190108-Bx-attP-R-pre.fastq
+attP	9/26/2018	20190108-Bx-attP-L-2.fastq	20190108-Bx-attP-R-2.fastq	20190108-Bx-attP-L-pre.fastq	20190108-Bx-attP-R-pre.fastq
+attP	9/26/2018	20190108-Bx-attP-L-3.fastq	20190108-Bx-attP-R-3.fastq	20190108-Bx-attP-L-pre.fastq	20190108-Bx-attP-R-pre.fastq
+attB	9/26/2018	20190108-Bx-attB-L-1.fastq	20190108-Bx-attB-R-1.fastq	20190108-Bx-attB-L-pre.fastq	20190108-Bx-attB-R-pre.fastq
+attB	9/26/2018	20190108-Bx-attB-L-2.fastq	20190108-Bx-attB-R-2.fastq	20190108-Bx-attB-L-pre.fastq	20190108-Bx-attB-R-pre.fastq
+attB	9/26/2018	20190108-Bx-attB-L-3.fastq	20190108-Bx-attB-R-3.fastq	20190108-Bx-attB-L-pre.fastq	20190108-Bx-attB-R-pre.fastq
