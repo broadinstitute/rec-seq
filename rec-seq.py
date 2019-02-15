@@ -55,14 +55,21 @@ def substrate_map(substrate_file):
 
     map = {}
     substrates =  pd.read_csv(substrate_file, sep='\t')
-
-    for i in range(len(substrates)):
-        library_file = substrates.Library_file[i]
-        format = parse_substrate_format(substrates.Site_layout[i], sep=';')
-        substrate = substrates.Substrate[i]
-        core = substrate[format[0] : (format[0]+format[1])]
-        map[library_file] = (substrate, core, format)
-    return map
+    if 'Library_file' not in substrates.columns:
+        log('ERROR: required column "Library_file" not found in input substrates file')
+    elif 'Substrate' not in substrates.columns:
+        log('ERROR: required column "Substrate" not found in input substrates file')
+    elif 'Site_layout' not in substrates.columns:
+        log('ERROR: required column "Site_layout" not found in input substrates file')
+    else:
+        for i in range(len(substrates)):
+            library_file = substrates.Library_file[i]
+            format = parse_substrate_format(substrates.Site_layout[i], sep=';')
+            substrate = substrates.Substrate[i]
+            core = substrate[format[0] : (format[0]+format[1])]
+            map[library_file] = (substrate, core, format)
+        return map
+    return None
 
 
 def next_read(f):
@@ -289,11 +296,35 @@ def process(row, substrates, controls, max_mismatch_count, root):
         print_enrichments(range(format[0]+format[1],len(substrate)), row, enrichments, control_distribution, substrate, format)
 
 
+def read_index_file(index_file):
+    """
+        Read index file and check that all required columns are present
+    """
+    input = pd.read_csv(index_file, sep='\t')
+    if 'Enzyme_variant' not in input.columns:
+        log('ERROR: required column "Enzyme_variant" not found in input index file')
+    elif 'Date' not in input.columns:
+        log('ERROR: required column "Date" not found in input index file')
+    elif 'Left_library_file' not in input.columns:
+        log('ERROR: required column "Left_library_file" not found in input index file')
+    elif 'Right_library_file' not in input.columns:
+        log('ERROR: required column "Right_library_file" not found in input index file')
+    elif 'Left_control_file' not in input.columns:
+        log('ERROR: required column "Left_control_file" not found in input index file')
+    elif 'Right_control_file' not in input.columns:
+        log('ERROR: required column "Right_control_file" not found in input index file')
+    else:
+        return input
+    return []
+
+
 def main():
 
     (index_file, substrate_file, max_mismatch_count) = parse_command_line()
-    input = pd.read_csv(index_file, sep='\t')
+    input = read_index_file(index_file)
     substrates = substrate_map(substrate_file)
+    if len(input) == 0 or substrates == None:
+        return
 
     root = os.path.dirname(index_file)
     if len(root) > 0:
@@ -321,7 +352,7 @@ def parse_command_line():
     parser.add_argument('-mmc', '--max_mismatch_count', type=int, default=5,
                         help='default max mismatch count value 5')
     args = parser.parse_args()
-    print(args)
+    log(args)
     return (args.index_file, args.substrate_file, args.max_mismatch_count)
 
 
